@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="psevdo_Lightshot:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/psevdo_Lightshot_jar</output-path>
+    <root id="archive" name="psevdo_Lightshot.jar">
+      <element id="module-output" name="psevdo_Lightshot" />
+    </root>
+  </artifact>
+</component>
