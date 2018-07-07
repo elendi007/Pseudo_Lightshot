@@ -9,21 +9,8 @@ public class ImagePanel extends JPanel {
     private BufferedImage bufferedImage;
 
     ImagePanel(){
-        setBackground(new Color(0,0,0,0.1f));
-
-        //setBackground(Color.red);
+        //setBackground(new Color(0,0,0,0.5f));
+        setBackground(Color.red);
 
     }
-
-
-    ImagePanel(BufferedImage bufferedImage){
-        this.bufferedImage = bufferedImage;
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(bufferedImage, 0, 0, null);
-    }
-
 }

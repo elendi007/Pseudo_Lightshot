@@ -17,15 +17,14 @@ public class ScreenCaptureWindow_2 extends Window {
     private static int screenWindowHeight = 0;
 
     private ImagePanel imagePanel = new ImagePanel();
-    private ImagePanel imagePanel_2;
+    private ImagePanel_2 imagePanel_2;
 
     ScreenCaptureWindow_2(MainWindow mainWindow){
         super(new JFrame());
 
         mainWindow.setState(JFrame.ICONIFIED);
 
-        imagePanel_2 = new ImagePanel(ScreenShotAlgorithm.getScreen());
-        imagePanel_2.repaint();
+        imagePanel_2 = new ImagePanel_2(ScreenShotAlgorithm.getScreen());
 
         add(imagePanel_2);
 
@@ -120,9 +119,5 @@ public class ScreenCaptureWindow_2 extends Window {
                 imagePanel.repaint();
             }
         });
-
     }
-
-
-
 }
