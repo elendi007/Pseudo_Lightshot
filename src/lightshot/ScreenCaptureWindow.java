@@ -51,11 +51,6 @@ public class ScreenCaptureWindow extends JFrame {
                 add(imagePanel);
 
             }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
         });
 
         addMouseMotionListener(new MouseAdapter() {
