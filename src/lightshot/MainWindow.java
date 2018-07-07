@@ -50,7 +50,7 @@ public class MainWindow extends JFrame {
 
         btnScreenCapture.addActionListener(e->{
             setState(JFrame.ICONIFIED);
-            new ScreenCaptureWindow(this);
+            new ScreenCaptureWindow_2();
         });
 
         btnExit.addActionListener(e -> System.exit(0));
