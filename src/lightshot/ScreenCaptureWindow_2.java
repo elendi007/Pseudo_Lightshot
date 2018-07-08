@@ -19,13 +19,20 @@ public class ScreenCaptureWindow_2 extends Window {
     private ImagePanel imagePanel = new ImagePanel();
     private ImagePanel_2 imagePanel_2;
 
+    BtnExit btnExit = new BtnExit("exit");
+
+    private MainWindow mainWindow;
+
     ScreenCaptureWindow_2(MainWindow mainWindow){
         super(new JFrame());
+
+        this.mainWindow = mainWindow;
 
         mainWindow.setState(JFrame.ICONIFIED);
 
 
         imagePanel_2 = new ImagePanel_2(ScreenShotAlgorithm.getScreen());
+        imagePanel_2.setLayout(null);
 
         add(imagePanel_2);
 
@@ -113,14 +120,36 @@ public class ScreenCaptureWindow_2 extends Window {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
 
-//                btnSave.setBounds(imagePanel.getWidth()/2 - 40, imagePanel.getHeight()/2 - 30, 80,30);
-//                btnExit.setBounds(imagePanel.getWidth()/2 - 40, imagePanel.getHeight()/2, 80,30);
-//
-//                imagePanel.add(btnSave);
-//                imagePanel.add(btnExit);
+                btnExit.setBounds(currentCursorPositionX + (e.getX() - currentCursorPositionX)/2 - 40,
+                        currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 - 15,
+                        80,30);
+
+                imagePanel_2.add(btnExit);
+
+
 
                 imagePanel_2.repaint();
             }
         });
+    }
+
+
+    private class BtnExit extends JButton{
+        BtnExit(String text){
+            setText(text);
+
+            setBackground(Color.red);
+
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    super.mouseReleased(e);
+
+                    dispose();
+
+                    mainWindow.setState(Frame.NORMAL);
+                }
+            });
+        }
     }
 }

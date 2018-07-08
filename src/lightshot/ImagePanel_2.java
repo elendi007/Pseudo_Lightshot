@@ -45,4 +45,20 @@ public class ImagePanel_2 extends JPanel {
         this.widthRect = widthRect;
         this.heightRect = heightRect;
     }
+
+    public int getWidthRect(){
+        return this.widthRect;
+    }
+
+    public int getHeightRect(){
+        return this.heightRect;
+    }
+
+    public int getxRect(){
+        return this.xRect;
+    }
+
+    public int getyRect(){
+        return this.yRect;
+    }
 }
