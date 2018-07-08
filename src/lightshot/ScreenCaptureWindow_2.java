@@ -24,7 +24,10 @@ public class ScreenCaptureWindow_2 extends Window {
 
         mainWindow.setState(JFrame.ICONIFIED);
 
-        imagePanel_2 = new ImagePanel_2(ScreenShotAlgorithm.getScreen());
+
+        imagePanel_2 = new ImagePanel_2();
+        //imagePanel_2 = new ImagePanel_2(ScreenShotAlgorithm.getScreen());
+        //imagePanel_2.drawScreen();
 
         add(imagePanel_2);
 
@@ -42,7 +45,7 @@ public class ScreenCaptureWindow_2 extends Window {
                 currentCursorPositionX = e.getX();
                 currentCursorPositionY = e.getY();
 
-                imagePanel.setLocation(e.getX(), e.getY());
+                imagePanel_2.setLocation(e.getX(), e.getY());
                 add(imagePanel);
 
             }
