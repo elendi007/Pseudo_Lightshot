@@ -12,9 +12,6 @@ public class ImagePanel_2 extends JPanel {
     private int widthRect;
     private int heightRect;
 
-    ImagePanel_2(){
-    }
-
     ImagePanel_2(BufferedImage bufferedImage){
         this.bufferedImage = bufferedImage;
     }
@@ -22,6 +19,7 @@ public class ImagePanel_2 extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(bufferedImage, 0,0,null);
         drawRect(g, xRect, yRect, widthRect, heightRect);
     }
 
@@ -36,12 +34,15 @@ public class ImagePanel_2 extends JPanel {
         graphics2D.drawRect(xRect, yRect, widthRect, heightRect);
     }
 
-    public void rect(int xRect, int yRect, int widthRect, int heightRect){
+    public void setRectLocation(int xRect, int yRect){
         this.xRect = xRect;
         this.yRect = yRect;
-        this.widthRect = widthRect;
-        this.heightRect = heightRect;
 
         repaint();
+    }
+
+    public void setRectSize(int widthRect, int heightRect){
+        this.widthRect = widthRect;
+        this.heightRect = heightRect;
     }
 }

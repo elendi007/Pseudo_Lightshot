@@ -25,9 +25,7 @@ public class ScreenCaptureWindow_2 extends Window {
         mainWindow.setState(JFrame.ICONIFIED);
 
 
-        imagePanel_2 = new ImagePanel_2();
-        //imagePanel_2 = new ImagePanel_2(ScreenShotAlgorithm.getScreen());
-        //imagePanel_2.drawScreen();
+        imagePanel_2 = new ImagePanel_2(ScreenShotAlgorithm.getScreen());
 
         add(imagePanel_2);
 
@@ -45,9 +43,7 @@ public class ScreenCaptureWindow_2 extends Window {
                 currentCursorPositionX = e.getX();
                 currentCursorPositionY = e.getY();
 
-                imagePanel_2.setLocation(e.getX(), e.getY());
-                add(imagePanel);
-
+                imagePanel_2.setRectLocation(currentCursorPositionX, currentCursorPositionY);
             }
         });
 
@@ -66,8 +62,9 @@ public class ScreenCaptureWindow_2 extends Window {
                     finalCursorPositionX = currentCursorPositionX;
                     finalCursorPositionY = e.getY();
 
-                    imagePanel.setLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel.setSize(screenWindowWidth, screenWindowHeight);
+                    imagePanel_2.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanel_2.setRectSize(screenWindowWidth, screenWindowHeight);
+
                 }
 
                 //2+
@@ -78,8 +75,9 @@ public class ScreenCaptureWindow_2 extends Window {
                     finalCursorPositionX = e.getX();
                     finalCursorPositionY = e.getY();
 
-                    imagePanel.setLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel.setSize(screenWindowWidth, screenWindowHeight);
+                    imagePanel_2.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanel_2.setRectSize(screenWindowWidth, screenWindowHeight);
+
                 }
 
                 //3+
@@ -90,8 +88,9 @@ public class ScreenCaptureWindow_2 extends Window {
                     finalCursorPositionX = e.getX();
                     finalCursorPositionY = currentCursorPositionY;
 
-                    imagePanel.setLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel.setSize(screenWindowWidth, screenWindowHeight);
+                    imagePanel_2.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanel_2.setRectSize(screenWindowWidth, screenWindowHeight);
+
                 }
 
                 //4+
@@ -102,8 +101,9 @@ public class ScreenCaptureWindow_2 extends Window {
                     finalCursorPositionX = currentCursorPositionX;
                     finalCursorPositionY = currentCursorPositionY;
 
-                    imagePanel.setLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel.setSize(screenWindowWidth, screenWindowHeight);
+                    imagePanel_2.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanel_2.setRectSize(screenWindowWidth, screenWindowHeight);
+
                 }
             }
         });
@@ -119,7 +119,7 @@ public class ScreenCaptureWindow_2 extends Window {
 //                imagePanel.add(btnSave);
 //                imagePanel.add(btnExit);
 
-                imagePanel.repaint();
+                imagePanel_2.repaint();
             }
         });
     }
