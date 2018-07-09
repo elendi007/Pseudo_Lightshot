@@ -1,9 +1,13 @@
 package lightshot;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ScreenCaptureWindow_2 extends Window {
 
@@ -18,6 +22,7 @@ public class ScreenCaptureWindow_2 extends Window {
 
     private ImagePanel imagePanel = new ImagePanel();
     private ImagePanel_2 imagePanel_2;
+
 
     BtnExit btnExit = new BtnExit("exit");
 
@@ -120,17 +125,67 @@ public class ScreenCaptureWindow_2 extends Window {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
 
+
+
                 btnExit.setBounds(currentCursorPositionX + (e.getX() - currentCursorPositionX)/2 - 40,
                         currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 - 15,
                         80,30);
 
-                imagePanel_2.add(btnExit);
 
+                BtnSave btnSave = new BtnSave("save",
+                        new Rectangle(currentCursorPositionX, currentCursorPositionY,
+                                screenWindowWidth, screenWindowHeight));
+
+                btnSave.setBounds(currentCursorPositionX + (e.getX() - currentCursorPositionX)/2 - 40,
+                        currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 - 45,
+                        80,30);
+
+                imagePanel_2.add(btnExit);
+                imagePanel_2.add(btnSave);
 
 
                 imagePanel_2.repaint();
             }
         });
+    }
+
+
+
+    private class BtnSave extends JButton{
+
+        private BufferedImage bufferedImage2 = null;
+
+        BtnSave(String text, Rectangle rectangle){
+
+            setText(text);
+            setBackground(Color.RED);
+
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    super.mouseReleased(e);
+
+
+                    try {
+                        bufferedImage2 = new Robot().createScreenCapture(rectangle);
+                    } catch (AWTException e1) {
+                        e1.printStackTrace();
+                    }
+
+                    dispose();
+
+                    FileDialog fileDialog = new FileDialog(new Frame(), "сохранить картинку", FileDialog.SAVE);
+                    fileDialog.setVisible(true);
+
+                    try {
+                        ImageIO.write(bufferedImage2,"png",
+                                new File(fileDialog.getDirectory(), fileDialog.getFile() + ".png"));
+                    }catch (IOException exp){
+                        System.out.println("IOException " + exp);
+                    }
+                }
+            });
+        }
     }
 
 
