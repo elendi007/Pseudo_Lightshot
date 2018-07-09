@@ -17,6 +17,17 @@ public class ScreenShotAlgorithm {
         return null;
     }
 
+    public static BufferedImage getScreen(Rectangle rectangle) {
+
+        try {
+            return new Robot().createScreenCapture(rectangle);
+
+        } catch (SecurityException | AWTException ignored) {
+        }
+
+        return null;
+    }
+
     public static BufferedImage getScreenCapture(int posX, int posY, int width, int height){
 
         try {
