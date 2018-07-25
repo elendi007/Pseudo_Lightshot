@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ScreenCaptureWindow_2 extends Window {
+public class ScreenCaptureForMac extends Window {
 
     private static int currentCursorPositionX = 0;
     private static int currentCursorPositionY = 0;
@@ -20,17 +20,15 @@ public class ScreenCaptureWindow_2 extends Window {
     private static int screenWindowWidth = 0;
     private static int screenWindowHeight = 0;
 
-    private ImagePanel imagePanel = new ImagePanel();
-    private ImagePanel_2 imagePanel_2;
+    private ImagePanel imagePanel;
 
-    private static Rectangle screenRect = new Rectangle();
-
-    BtnExit btnExit = new BtnExit("exit");
-    BtnSave btnSave = new BtnSave("save");
+    private BtnExit btnExit = new BtnExit("exit");
+    private BtnSave btnSave = new BtnSave("save");
 
     private MainWindow mainWindow;
 
-    ScreenCaptureWindow_2(MainWindow mainWindow){
+    ScreenCaptureForMac(MainWindow mainWindow){
+
         super(new JFrame());
 
         this.mainWindow = mainWindow;
@@ -38,87 +36,87 @@ public class ScreenCaptureWindow_2 extends Window {
         mainWindow.setState(JFrame.ICONIFIED);
 
 
-        imagePanel_2 = new ImagePanel_2(ScreenShotAlgorithm.getScreen());
-        imagePanel_2.setLayout(null);
-
-        add(imagePanel_2);
-
-        setVisible(true);
+        imagePanel = new ImagePanel(ScreenShotAlgorithm.getScreen());
 
         GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         graphicsDevice.setFullScreenWindow(this);
 
+        add(imagePanel);
+
+        setVisible(true);
 
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
+
                 currentCursorPositionX = e.getX();
                 currentCursorPositionY = e.getY();
 
-                imagePanel_2.setRectLocation(currentCursorPositionX, currentCursorPositionY);
-
+                imagePanel.setRectLocation(currentCursorPositionX, currentCursorPositionY);
             }
         });
-
-
 
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
                 super.mouseDragged(e);
 
-                //1
-                if(currentCursorPositionX < e.getX() && currentCursorPositionY > e.getY()){
+                //first_quarter
+                if( currentCursorPositionX < e.getX() && currentCursorPositionY > e.getY() ){
+
                     screenWindowWidth = e.getX() - currentCursorPositionX;
                     screenWindowHeight = currentCursorPositionY - e.getY();
 
                     finalCursorPositionX = currentCursorPositionX;
                     finalCursorPositionY = e.getY();
 
-                    imagePanel_2.setRectLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel_2.setRectSize(screenWindowWidth, screenWindowHeight);
+                    imagePanel.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanel.setRectSize(screenWindowWidth, screenWindowHeight);
 
                 }
 
-                //2+
-                else if(currentCursorPositionX > e.getX() && currentCursorPositionY > e.getY()){
+                //second_quarter
+                else if( currentCursorPositionX > e.getX() && currentCursorPositionY > e.getY() ){
+
                     screenWindowWidth = currentCursorPositionX - e.getX();
                     screenWindowHeight = currentCursorPositionY - e.getY();
 
                     finalCursorPositionX = e.getX();
                     finalCursorPositionY = e.getY();
 
-                    imagePanel_2.setRectLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel_2.setRectSize(screenWindowWidth, screenWindowHeight);
+                    imagePanel.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanel.setRectSize(screenWindowWidth, screenWindowHeight);
 
                 }
 
-                //3+
-                else if(currentCursorPositionX > e.getX() && currentCursorPositionY < e.getY()){
+                //third_quarter
+                else if( currentCursorPositionX > e.getX() && currentCursorPositionY < e.getY() ){
+
                     screenWindowWidth = currentCursorPositionX - e.getX();
                     screenWindowHeight = e.getY() - currentCursorPositionY;
 
                     finalCursorPositionX = e.getX();
                     finalCursorPositionY = currentCursorPositionY;
 
-                    imagePanel_2.setRectLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel_2.setRectSize(screenWindowWidth, screenWindowHeight);
+                    imagePanel.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanel.setRectSize(screenWindowWidth, screenWindowHeight);
 
 
                 }
 
-                //4+
-                else if(currentCursorPositionX < e.getX() && currentCursorPositionY < e.getY()){
+                //fourth_quarter
+                else if( currentCursorPositionX < e.getX() && currentCursorPositionY < e.getY() ){
+
                     screenWindowWidth = e.getX() - currentCursorPositionX;
                     screenWindowHeight = e.getY()- currentCursorPositionY;
 
                     finalCursorPositionX = currentCursorPositionX;
                     finalCursorPositionY = currentCursorPositionY;
 
-                    imagePanel_2.setRectLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel_2.setRectSize(screenWindowWidth, screenWindowHeight);
+                    imagePanel.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanel.setRectSize(screenWindowWidth, screenWindowHeight);
 
                 }
             }
@@ -129,11 +127,10 @@ public class ScreenCaptureWindow_2 extends Window {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
 
-
                 Rectangle rectangle = new Rectangle();
 
+                if( currentCursorPositionX < e.getX() && currentCursorPositionY > e.getY() ){
 
-                if(currentCursorPositionX < e.getX() && currentCursorPositionY > e.getY()){
                     screenWindowWidth = e.getX() - currentCursorPositionX;
                     screenWindowHeight = currentCursorPositionY - e.getY();
 
@@ -142,10 +139,12 @@ public class ScreenCaptureWindow_2 extends Window {
 
                     rectangle.setLocation(finalCursorPositionX + 1,finalCursorPositionY+1);
                     rectangle.setSize(screenWindowWidth-2,screenWindowHeight-1);
+
                 }
 
                 //2+
-                else if(currentCursorPositionX > e.getX() && currentCursorPositionY > e.getY()){
+                else if( currentCursorPositionX > e.getX() && currentCursorPositionY > e.getY() ){
+
                     screenWindowWidth = currentCursorPositionX - e.getX();
                     screenWindowHeight = currentCursorPositionY - e.getY();
 
@@ -154,10 +153,12 @@ public class ScreenCaptureWindow_2 extends Window {
 
                     rectangle.setLocation(finalCursorPositionX+1,finalCursorPositionY+1);
                     rectangle.setSize(screenWindowWidth-2,screenWindowHeight-1);
+
                 }
 
                 //3+
-                else if(currentCursorPositionX > e.getX() && currentCursorPositionY < e.getY()){
+                else if( currentCursorPositionX > e.getX() && currentCursorPositionY < e.getY() ){
+
                     screenWindowWidth = currentCursorPositionX - e.getX();
                     screenWindowHeight = e.getY() - currentCursorPositionY;
 
@@ -170,7 +171,8 @@ public class ScreenCaptureWindow_2 extends Window {
                 }
 
                 //4+
-                else if(currentCursorPositionX < e.getX() && currentCursorPositionY < e.getY()){
+                else if( currentCursorPositionX < e.getX() && currentCursorPositionY < e.getY() ){
+
                     screenWindowWidth = e.getX() - currentCursorPositionX;
                     screenWindowHeight = e.getY()- currentCursorPositionY;
 
@@ -179,29 +181,23 @@ public class ScreenCaptureWindow_2 extends Window {
 
                     rectangle.setLocation(finalCursorPositionX+1,finalCursorPositionY+1);
                     rectangle.setSize(screenWindowWidth-2,screenWindowHeight-1);
+
                 }
 
                 btnSave.setBufferedImage2(rectangle);
-
 
                 btnExit.setBounds(currentCursorPositionX + (e.getX() - currentCursorPositionX)/2 - 40,
                         currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 - 15,
                         80,30);
 
-
-//                BtnSave btnSave = new BtnSave("save",
-//                        new Rectangle(currentCursorPositionX, currentCursorPositionY,
-//                                screenWindowWidth, screenWindowHeight));
-//
-
                 btnSave.setBounds(currentCursorPositionX + (e.getX() - currentCursorPositionX)/2 - 40,
                         currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 - 45,
                         80,30);
 
-                imagePanel_2.add(btnExit);
-                imagePanel_2.add(btnSave);
+                imagePanel.add(btnExit);
+                imagePanel.add(btnSave);
 
-                imagePanel_2.repaint();
+                imagePanel.repaint();
             }
         });
     }

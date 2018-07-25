@@ -12,6 +12,7 @@ public class ScreenShotAlgorithm {
                     new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
 
         } catch (SecurityException | AWTException ignored) {
+
         }
 
         return null;

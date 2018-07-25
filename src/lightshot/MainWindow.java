@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainWindow extends JFrame {
+
     private static final int POS_X = 400;
     private static final int POS_Y = 200;
     private static final int WIDTH = 300;
@@ -16,6 +17,7 @@ public class MainWindow extends JFrame {
     private static BufferedImage bufferedImage = null;
 
     MainWindow(){
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBounds(POS_X, POS_Y, WIDTH, HEIGHT);
         setResizable(false);
@@ -31,10 +33,11 @@ public class MainWindow extends JFrame {
 
         btnScreenShot.addActionListener(e ->{
 
-            setState(JFrame.ICONIFIED);
+            this.setState(JFrame.ICONIFIED);
+
             bufferedImage = ScreenShotAlgorithm.getScreen();
 
-            setExtendedState(JFrame.NORMAL);
+            this.setState(JFrame.NORMAL);
 
             FileDialog fileDialog = new FileDialog(new Frame(), "сохранить картинку", FileDialog.SAVE);
             fileDialog.setVisible(true);
@@ -45,12 +48,14 @@ public class MainWindow extends JFrame {
             }catch (IOException exp){
                 System.out.println("IOException " + exp);
             }
+
             this.setVisible(true);
         });
 
         btnScreenCapture.addActionListener(e->{
-            setState(JFrame.ICONIFIED);
-            new ScreenCaptureWindow_2(this);
+            this.setState(JFrame.ICONIFIED);
+            new ScreenCaptureForMac(this);
+
         });
 
         btnExit.addActionListener(e -> System.exit(0));
@@ -59,6 +64,7 @@ public class MainWindow extends JFrame {
         add(btnScreenCapture);
         add(btnScreenShot);
         add(btnExit);
+
         setVisible(true);
     }
 }

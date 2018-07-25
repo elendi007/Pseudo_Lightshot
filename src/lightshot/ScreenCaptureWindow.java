@@ -20,7 +20,7 @@ public class ScreenCaptureWindow extends JFrame {
     private static int screenWindowWidth = 0;
     private static int screenWindowHeight = 0;
 
-    private static ImagePanel imagePanel = new ImagePanel();
+    private static ImagePanelWindows imagePanelWindows = new ImagePanelWindows();
 
     private BtnSave btnSave = new BtnSave("Save");
     private BtnExit btnExit = new BtnExit("Exit");
@@ -47,8 +47,8 @@ public class ScreenCaptureWindow extends JFrame {
                 currentCursorPositionX = e.getX();
                 currentCursorPositionY = e.getY();
 
-                imagePanel.setLocation(e.getX(), e.getY());
-                add(imagePanel);
+                imagePanelWindows.setLocation(e.getX(), e.getY());
+                add(imagePanelWindows);
 
             }
         });
@@ -66,8 +66,8 @@ public class ScreenCaptureWindow extends JFrame {
                     finalCursorPositionX = currentCursorPositionX;
                     finalCursorPositionY = e.getY();
 
-                    imagePanel.setLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel.setSize(screenWindowWidth, screenWindowHeight);
+                    imagePanelWindows.setLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanelWindows.setSize(screenWindowWidth, screenWindowHeight);
                 }
 
                 //2+
@@ -78,8 +78,8 @@ public class ScreenCaptureWindow extends JFrame {
                     finalCursorPositionX = e.getX();
                     finalCursorPositionY = e.getY();
 
-                    imagePanel.setLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel.setSize(screenWindowWidth, screenWindowHeight);
+                    imagePanelWindows.setLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanelWindows.setSize(screenWindowWidth, screenWindowHeight);
                 }
 
                 //3+
@@ -90,8 +90,8 @@ public class ScreenCaptureWindow extends JFrame {
                     finalCursorPositionX = e.getX();
                     finalCursorPositionY = currentCursorPositionY;
 
-                    imagePanel.setLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel.setSize(screenWindowWidth, screenWindowHeight);
+                    imagePanelWindows.setLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanelWindows.setSize(screenWindowWidth, screenWindowHeight);
                 }
 
                 //4+
@@ -102,8 +102,8 @@ public class ScreenCaptureWindow extends JFrame {
                     finalCursorPositionX = currentCursorPositionX;
                     finalCursorPositionY = currentCursorPositionY;
 
-                    imagePanel.setLocation(finalCursorPositionX, finalCursorPositionY);
-                    imagePanel.setSize(screenWindowWidth, screenWindowHeight);
+                    imagePanelWindows.setLocation(finalCursorPositionX, finalCursorPositionY);
+                    imagePanelWindows.setSize(screenWindowWidth, screenWindowHeight);
                 }
             }
         });
@@ -113,13 +113,13 @@ public class ScreenCaptureWindow extends JFrame {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
 
-                btnSave.setBounds(imagePanel.getWidth()/2 - 40, imagePanel.getHeight()/2 - 30, 80,30);
-                btnExit.setBounds(imagePanel.getWidth()/2 - 40, imagePanel.getHeight()/2, 80,30);
+                btnSave.setBounds(imagePanelWindows.getWidth()/2 - 40, imagePanelWindows.getHeight()/2 - 30, 80,30);
+                btnExit.setBounds(imagePanelWindows.getWidth()/2 - 40, imagePanelWindows.getHeight()/2, 80,30);
 
-                imagePanel.add(btnSave);
-                imagePanel.add(btnExit);
+                imagePanelWindows.add(btnSave);
+                imagePanelWindows.add(btnExit);
 
-                imagePanel.repaint();
+                imagePanelWindows.repaint();
             }
         });
         setVisible(true);
