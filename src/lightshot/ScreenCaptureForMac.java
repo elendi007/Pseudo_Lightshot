@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class ScreenCaptureForMac extends Window {
-
     private static int currentCursorPositionX = 0;
     private static int currentCursorPositionY = 0;
 
@@ -24,28 +23,33 @@ public class ScreenCaptureForMac extends Window {
 
     private BtnExit btnExit = new BtnExit("exit");
     private BtnSave btnSave = new BtnSave("save");
+    private boolean buttonTriger = true;
 
     private MainWindow mainWindow;
 
     ScreenCaptureForMac(MainWindow mainWindow){
-
+        //вызов супер конструктора класса window (в качестве параметра передаётся новая форма)
         super(new JFrame());
 
         this.mainWindow = mainWindow;
 
+        //свернуть окошко с меню
         mainWindow.setState(JFrame.ICONIFIED);
 
-
+        //передача панельке полного изображения экрана
         imagePanel = new ImagePanel(ScreenShotAlgorithm.getScreen());
 
+        //добавление панельки с изображением экрана на пустое окно (ScreenCaptureForMac)
+        add(imagePanel);
+
+        //получение монитора с рабочего устройства, для того чтобы накрыть на него окно (ScreenCaptureForMac)
         GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         graphicsDevice.setFullScreenWindow(this);
 
-        add(imagePanel);
-
+        //установка видимости окна
         setVisible(true);
 
-
+        //добавление обработчика событий мыши по каждому нажатию
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -54,83 +58,92 @@ public class ScreenCaptureForMac extends Window {
                 currentCursorPositionX = e.getX();
                 currentCursorPositionY = e.getY();
 
-                imagePanel.setRectLocation(currentCursorPositionX, currentCursorPositionY);
+                //установка начальных точек отсчёта для обрезки изображения панельки
+//                imagePanel.setRectLocation(currentCursorPositionX, currentCursorPositionY);
             }
         });
 
+        //добавление обработчика событий мыши, которое срабатывает при нажитии и перетаскивании курсора
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
                 super.mouseDragged(e);
 
+                //отключение кнопок и тригера
+                buttonTriger = true;
+                imagePanel.remove(btnExit);
+                imagePanel.remove(btnSave);
+
                 //first_quarter
                 if( currentCursorPositionX < e.getX() && currentCursorPositionY > e.getY() ){
-
                     screenWindowWidth = e.getX() - currentCursorPositionX;
                     screenWindowHeight = currentCursorPositionY - e.getY();
 
                     finalCursorPositionX = currentCursorPositionX;
                     finalCursorPositionY = e.getY();
 
+                    //установка начальных точек отсчёта для обрезки изображения панельки
                     imagePanel.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    //установка размеров панельки для обрезки
                     imagePanel.setRectSize(screenWindowWidth, screenWindowHeight);
-
                 }
 
                 //second_quarter
                 else if( currentCursorPositionX > e.getX() && currentCursorPositionY > e.getY() ){
-
                     screenWindowWidth = currentCursorPositionX - e.getX();
                     screenWindowHeight = currentCursorPositionY - e.getY();
 
                     finalCursorPositionX = e.getX();
                     finalCursorPositionY = e.getY();
 
+                    //установка начальных точек отсчёта для обрезки изображения панельки
                     imagePanel.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    //установка размеров панельки для обрезки
                     imagePanel.setRectSize(screenWindowWidth, screenWindowHeight);
-
                 }
 
                 //third_quarter
                 else if( currentCursorPositionX > e.getX() && currentCursorPositionY < e.getY() ){
-
                     screenWindowWidth = currentCursorPositionX - e.getX();
                     screenWindowHeight = e.getY() - currentCursorPositionY;
 
                     finalCursorPositionX = e.getX();
                     finalCursorPositionY = currentCursorPositionY;
 
+                    //установка начальных точек отсчёта для обрезки изображения панельки
                     imagePanel.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    //установка размеров панельки для обрезки
                     imagePanel.setRectSize(screenWindowWidth, screenWindowHeight);
-
-
                 }
 
                 //fourth_quarter
                 else if( currentCursorPositionX < e.getX() && currentCursorPositionY < e.getY() ){
-
                     screenWindowWidth = e.getX() - currentCursorPositionX;
                     screenWindowHeight = e.getY()- currentCursorPositionY;
 
                     finalCursorPositionX = currentCursorPositionX;
                     finalCursorPositionY = currentCursorPositionY;
 
+                    //установка начальных точек отсчёта для обрезки изображения панельки
                     imagePanel.setRectLocation(finalCursorPositionX, finalCursorPositionY);
+                    //установка размеров панельки для обрезки
                     imagePanel.setRectSize(screenWindowWidth, screenWindowHeight);
-
                 }
             }
         });
 
+        //добавление обработчика событий мыши, которое срабатывает при отпускании клавиши на компоненте
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
 
+                //инициализация объекта прямоугольник, который служит областью в рамках которой необходимо выделить
+                //изображение из полученного скрина экрана
                 Rectangle rectangle = new Rectangle();
 
+                //first_quarter
                 if( currentCursorPositionX < e.getX() && currentCursorPositionY > e.getY() ){
-
                     screenWindowWidth = e.getX() - currentCursorPositionX;
                     screenWindowHeight = currentCursorPositionY - e.getY();
 
@@ -139,12 +152,10 @@ public class ScreenCaptureForMac extends Window {
 
                     rectangle.setLocation(finalCursorPositionX + 1,finalCursorPositionY+1);
                     rectangle.setSize(screenWindowWidth-2,screenWindowHeight-1);
-
                 }
 
-                //2+
+                //second_quarter
                 else if( currentCursorPositionX > e.getX() && currentCursorPositionY > e.getY() ){
-
                     screenWindowWidth = currentCursorPositionX - e.getX();
                     screenWindowHeight = currentCursorPositionY - e.getY();
 
@@ -153,12 +164,10 @@ public class ScreenCaptureForMac extends Window {
 
                     rectangle.setLocation(finalCursorPositionX+1,finalCursorPositionY+1);
                     rectangle.setSize(screenWindowWidth-2,screenWindowHeight-1);
-
                 }
 
-                //3+
+                //third_quarter
                 else if( currentCursorPositionX > e.getX() && currentCursorPositionY < e.getY() ){
-
                     screenWindowWidth = currentCursorPositionX - e.getX();
                     screenWindowHeight = e.getY() - currentCursorPositionY;
 
@@ -167,12 +176,10 @@ public class ScreenCaptureForMac extends Window {
 
                     rectangle.setLocation(finalCursorPositionX+1,finalCursorPositionY+1);
                     rectangle.setSize(screenWindowWidth-2,screenWindowHeight-1);
-
                 }
 
-                //4+
+                //fourth_quarter
                 else if( currentCursorPositionX < e.getX() && currentCursorPositionY < e.getY() ){
-
                     screenWindowWidth = e.getX() - currentCursorPositionX;
                     screenWindowHeight = e.getY()- currentCursorPositionY;
 
@@ -181,7 +188,6 @@ public class ScreenCaptureForMac extends Window {
 
                     rectangle.setLocation(finalCursorPositionX+1,finalCursorPositionY+1);
                     rectangle.setSize(screenWindowWidth-2,screenWindowHeight-1);
-
                 }
 
                 btnSave.setBufferedImage2(rectangle);
@@ -194,18 +200,23 @@ public class ScreenCaptureForMac extends Window {
                         currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 - 45,
                         80,30);
 
-                imagePanel.add(btnExit);
-                imagePanel.add(btnSave);
+                //добавление кнопок сохранить и выйти при наличии тригера
+                if(buttonTriger) {
+                    imagePanel.add(btnExit);
+                    imagePanel.add(btnSave);
+                    buttonTriger = false;
+                }else {
+                    imagePanel.remove(btnExit);
+                    imagePanel.remove(btnSave);
+                }
 
+                //перерисовка панели с изображением скрина
                 imagePanel.repaint();
             }
         });
     }
 
-
-
     private class BtnSave extends JButton{
-
         private BufferedImage bufferedImage2 = null;
 
         void setBufferedImage2(Rectangle rectangle){
@@ -213,7 +224,6 @@ public class ScreenCaptureForMac extends Window {
         }
 
         BtnSave(String text){
-
             setText(text);
             setBackground(Color.RED);
 
@@ -222,10 +232,13 @@ public class ScreenCaptureForMac extends Window {
                 public void mouseReleased(MouseEvent e) {
                     super.mouseReleased(e);
 
-                    mainWindow.setState(JFrame.NORMAL);
-
+                    //убить ScreenCaptureForMac
                     dispose();
 
+                    //установить видимость главного окна после сохранения захваченного изображения
+                    mainWindow.setState(JFrame.NORMAL);
+
+                    //вызов диалогового окна для сохранения полученного изображения
                     FileDialog fileDialog = new FileDialog(new Frame(), "сохранить картинку", FileDialog.SAVE);
                     fileDialog.setVisible(true);
 
@@ -240,11 +253,9 @@ public class ScreenCaptureForMac extends Window {
         }
     }
 
-
     private class BtnExit extends JButton{
         BtnExit(String text){
             setText(text);
-
             setBackground(Color.red);
 
             addMouseListener(new MouseAdapter() {
@@ -252,8 +263,10 @@ public class ScreenCaptureForMac extends Window {
                 public void mouseReleased(MouseEvent e) {
                     super.mouseReleased(e);
 
+                    //убить ScreenCaptureForMac
                     dispose();
 
+                    //установить видимость главного окна после сохранения захваченного изображения
                     mainWindow.setState(Frame.NORMAL);
                 }
             });
