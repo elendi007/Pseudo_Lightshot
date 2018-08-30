@@ -47,8 +47,10 @@ public class MainWindow extends JFrame {
             fileDialog.setVisible(true);
 
             try {
-                ImageIO.write(bufferedImage,"png",
+                if(fileDialog.getDirectory()!=null){
+                    ImageIO.write(bufferedImage,"png",
                         new File(fileDialog.getDirectory(), fileDialog.getFile() + ".png"));
+                }
             }catch (IOException exp){
                 System.out.println("IOException " + exp);
             }
