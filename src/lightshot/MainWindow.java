@@ -3,6 +3,7 @@ package lightshot;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -75,5 +76,16 @@ public class MainWindow extends JFrame {
 
         //установка видимости окна
         setVisible(true);
+
+        //установка горячей клавиши для кнопки exit
+        btnExit.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("alt Q"),
+                "exit");
+        btnExit.getActionMap().put("exit", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
     }
 }
