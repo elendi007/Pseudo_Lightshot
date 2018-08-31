@@ -53,7 +53,10 @@ public class MainWindow extends JFrame {
 
             try {
                 if(fileDialog.getDirectory()!=null){
-                    ImageIO.write(bufferedImage,"png",
+                    if(fileDialog.getFile().endsWith(".png"))
+                        ImageIO.write(bufferedImage,"png",
+                                new File(fileDialog.getDirectory(), fileDialog.getFile()));
+                    else ImageIO.write(bufferedImage,"png",
                         new File(fileDialog.getDirectory(), fileDialog.getFile() + ".png"));
                 }
             }catch (IOException exp){

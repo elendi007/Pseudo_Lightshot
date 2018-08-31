@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4808622a-cf46-417e-a8e6-09c0f6649027" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lightshot/MyBufferImage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/psevdo_Lightshot_jar/psevdo_Lightshot.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/psevdo_Lightshot_jar/psevdo_Lightshot.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/psevdo_Lightshot/lightshot/MainWindow$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/psevdo_Lightshot/lightshot/MainWindow$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/psevdo_Lightshot/lightshot/MainWindow$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/psevdo_Lightshot/lightshot/MainWindow$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/psevdo_Lightshot/lightshot/MainWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/psevdo_Lightshot/lightshot/MainWindow.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lightshot/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lightshot/MainWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lightshot/ScreenCaptureForMac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lightshot/ScreenCaptureForMac.java" afterDir="false" />
     </list>
@@ -26,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainWindow.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lightshot/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="24" column="8" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+            <state relative-caret-position="193">
+              <caret line="59" column="92" lean-forward="true" selection-start-line="54" selection-start-column="16" selection-end-line="59" selection-end-column="92" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2777#2934#0" expanded="true" />
@@ -42,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScreenCaptureForMac.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ScreenCaptureForMac.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lightshot/ScreenCaptureForMac.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="210" column="98" selection-start-line="210" selection-start-column="98" selection-end-line="210" selection-end-column="98" />
+            <state relative-caret-position="153">
+              <caret line="266" column="25" lean-forward="true" selection-start-line="266" selection-start-column="25" selection-end-line="266" selection-end-column="25" />
               <folding>
                 <element signature="e#2201#2642#0" expanded="true" />
                 <element signature="e#2641#2642#0" expanded="true" />
@@ -56,8 +59,8 @@
                 <element signature="e#10617#10618#0" expanded="true" />
                 <element signature="e#9791#9792#0" expanded="true" />
                 <element signature="e#9872#9873#0" expanded="true" />
-                <element signature="e#11876#12860#0" expanded="true" />
-                <element signature="e#12859#12860#0" expanded="true" />
+                <element signature="e#10949#12543#0" expanded="true" />
+                <element signature="e#12542#12543#0" expanded="true" />
                 <element signature="e#13048#13463#0" expanded="true" />
                 <element signature="e#13462#13463#0" expanded="true" />
               </folding>
@@ -115,8 +118,8 @@
         <option value="$PROJECT_DIR$/src/lightshot/ScreenShotAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/lightshot/ImagePanel.java" />
         <option value="$PROJECT_DIR$/src/lightshot/MyBufferImage.java" />
-        <option value="$PROJECT_DIR$/src/lightshot/ScreenCaptureForMac.java" />
         <option value="$PROJECT_DIR$/src/lightshot/MainWindow.java" />
+        <option value="$PROJECT_DIR$/src/lightshot/ScreenCaptureForMac.java" />
       </list>
     </option>
   </component>
@@ -137,6 +140,17 @@
             <path>
               <item name="Pseudo_Lightshot" type="b2602c69:ProjectViewProjectNode" />
               <item name="Pseudo_Lightshot" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Pseudo_Lightshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pseudo_Lightshot" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Pseudo_Lightshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pseudo_Lightshot" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Pseudo_Lightshot" type="b2602c69:ProjectViewProjectNode" />
@@ -309,7 +323,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/lightshot/MainWindow.java</url>
+          <line>54</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -333,8 +355,8 @@
             <element signature="e#10617#10618#0" expanded="true" />
             <element signature="e#9791#9792#0" expanded="true" />
             <element signature="e#9872#9873#0" expanded="true" />
-            <element signature="e#11876#12860#0" expanded="true" />
-            <element signature="e#12859#12860#0" expanded="true" />
+            <element signature="e#10949#12543#0" expanded="true" />
+            <element signature="e#12542#12543#0" expanded="true" />
             <element signature="e#13048#13463#0" expanded="true" />
             <element signature="e#13462#13463#0" expanded="true" />
           </folding>
@@ -543,8 +565,8 @@
             <element signature="e#10617#10618#0" expanded="true" />
             <element signature="e#9791#9792#0" expanded="true" />
             <element signature="e#9872#9873#0" expanded="true" />
-            <element signature="e#11876#12860#0" expanded="true" />
-            <element signature="e#12859#12860#0" expanded="true" />
+            <element signature="e#10949#12543#0" expanded="true" />
+            <element signature="e#12542#12543#0" expanded="true" />
             <element signature="e#13048#13463#0" expanded="true" />
             <element signature="e#13462#13463#0" expanded="true" />
           </folding>
@@ -576,6 +598,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+          <folding>
+            <element signature="e#13073#13074#0" expanded="true" />
+            <element signature="e#13100#13101#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -653,6 +679,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+          <folding>
+            <element signature="e#13073#13074#0" expanded="true" />
+            <element signature="e#13100#13101#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -711,10 +741,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/lightshot/MainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="59" column="92" lean-forward="true" selection-start-line="54" selection-start-column="16" selection-end-line="59" selection-end-column="92" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2777#2934#0" expanded="true" />
+            <element signature="e#2933#2934#0" expanded="true" />
+            <element signature="e#3290#3590#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/lightshot/ScreenCaptureForMac.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="210" column="98" selection-start-line="210" selection-start-column="98" selection-end-line="210" selection-end-column="98" />
+        <state relative-caret-position="153">
+          <caret line="266" column="25" lean-forward="true" selection-start-line="266" selection-start-column="25" selection-end-line="266" selection-end-column="25" />
           <folding>
             <element signature="e#2201#2642#0" expanded="true" />
             <element signature="e#2641#2642#0" expanded="true" />
@@ -724,24 +768,10 @@
             <element signature="e#10617#10618#0" expanded="true" />
             <element signature="e#9791#9792#0" expanded="true" />
             <element signature="e#9872#9873#0" expanded="true" />
-            <element signature="e#11876#12860#0" expanded="true" />
-            <element signature="e#12859#12860#0" expanded="true" />
+            <element signature="e#10949#12543#0" expanded="true" />
+            <element signature="e#12542#12543#0" expanded="true" />
             <element signature="e#13048#13463#0" expanded="true" />
             <element signature="e#13462#13463#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lightshot/MainWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="24" column="8" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2777#2934#0" expanded="true" />
-            <element signature="e#2933#2934#0" expanded="true" />
-            <element signature="e#3290#3590#0" expanded="true" />
-            <element signature="e#3589#3590#0" expanded="true" />
           </folding>
         </state>
       </provider>

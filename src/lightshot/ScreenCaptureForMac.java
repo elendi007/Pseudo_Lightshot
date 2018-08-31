@@ -262,8 +262,13 @@ public class ScreenCaptureForMac extends Window {
                     fileDialog.setVisible(true);
 
                     try {
-                        ImageIO.write(bufferedImage2,"png",
-                                new File(fileDialog.getDirectory(), fileDialog.getFile() + ".png"));
+                        if(fileDialog.getDirectory()!= null) {
+                            if(fileDialog.getFile().endsWith(".png"))
+                            ImageIO.write(bufferedImage2, "png",
+                                    new File(fileDialog.getDirectory(), fileDialog.getFile()));
+                            else ImageIO.write(bufferedImage2, "png",
+                                    new File(fileDialog.getDirectory(), fileDialog.getFile() + ".png"));
+                        }
                     }catch (IOException exp){
                         System.out.println("IOException " + exp);
                     }
