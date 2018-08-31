@@ -3,6 +3,8 @@ package lightshot;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -26,6 +28,8 @@ public class ScreenCaptureForMac extends Window {
     private boolean buttonTriger = true;
 
     private MainWindow mainWindow;
+
+    private Rectangle rectangle;
 
     ScreenCaptureForMac(MainWindow mainWindow){
         //вызов супер конструктора класса window (в качестве параметра передаётся новая форма)
@@ -140,7 +144,7 @@ public class ScreenCaptureForMac extends Window {
 
                 //инициализация объекта прямоугольник, который служит областью в рамках которой необходимо выделить
                 //изображение из полученного скрина экрана
-                Rectangle rectangle = new Rectangle();
+                rectangle = new Rectangle();
 
                 //first_quarter
                 if( currentCursorPositionX < e.getX() && currentCursorPositionY > e.getY() ){
@@ -190,6 +194,7 @@ public class ScreenCaptureForMac extends Window {
                     rectangle.setSize(screenWindowWidth-2,screenWindowHeight-1);
                 }
 
+                //добавление прямоугольника к кнопке save для сохранения картинки в пределах заданных границ
                 btnSave.setBufferedImage2(rectangle);
 
                 btnExit.setBounds(currentCursorPositionX + (e.getX() - currentCursorPositionX)/2 - 40,
@@ -200,14 +205,28 @@ public class ScreenCaptureForMac extends Window {
                         currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 - 45,
                         80,30);
 
+                //добавление метки с сообщением "нажми для вставки изображения"
+                Label label = new Label("IMAGE IN A BUFFER!");
+                label.setBackground(Color.red);
+                label.setBounds(currentCursorPositionX + (e.getX() - currentCursorPositionX)/2 - 60,
+                        currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 + 25,
+                        120,30);
+
+                //сохранение картинки в буфер
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                MyBufferImage myBufferImage = new MyBufferImage(ScreenShotAlgorithm.getScreen(rectangle));
+                clipboard.setContents(myBufferImage, null);
+
                 //добавление кнопок сохранить и выйти при наличии тригера
                 if(buttonTriger) {
                     imagePanel.add(btnExit);
                     imagePanel.add(btnSave);
+                    imagePanel.add(label);
                     buttonTriger = false;
                 }else {
                     imagePanel.remove(btnExit);
                     imagePanel.remove(btnSave);
+                    imagePanel.remove(label);
                 }
 
                 //перерисовка панели с изображением скрина

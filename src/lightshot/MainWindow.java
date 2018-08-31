@@ -17,7 +17,11 @@ public class MainWindow extends JFrame {
     //создание глобальной переменной для хранения картинки в буфере
     private static BufferedImage bufferedImage = null;
 
+    private MainWindow mainWindow;
+
     MainWindow(){
+
+        this.mainWindow = this;
 
         //настройки главного окна
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -77,7 +81,7 @@ public class MainWindow extends JFrame {
         //установка видимости окна
         setVisible(true);
 
-        //установка горячей клавиши для кнопки exit
+        //установка горячей клавиши для кнопки btnExit
         btnExit.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("alt Q"),
                 "exit");
         btnExit.getActionMap().put("exit", new AbstractAction() {
@@ -87,5 +91,18 @@ public class MainWindow extends JFrame {
             }
         });
 
+        //установка горячей клавиши для кнопки btnScreenCapture
+        btnExit.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("alt N"),
+                "capture");
+        btnExit.getActionMap().put("capture", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //свернуть окошко с меню
+                mainWindow.setState(JFrame.ICONIFIED);
+                //вызов конструктора
+
+                new ScreenCaptureForMac(mainWindow);
+            }
+        });
     }
 }
