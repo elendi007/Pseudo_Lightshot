@@ -25,6 +25,8 @@ public class ScreenCaptureForMac extends Window {
 
     private BtnExit btnExit = new BtnExit("exit");
     private BtnSave btnSave = new BtnSave("save");
+    private Label label = new Label("IMAGE IN A BUFFER!");
+
     private boolean buttonTriger = true;
 
     private MainWindow mainWindow;
@@ -49,6 +51,9 @@ public class ScreenCaptureForMac extends Window {
         //получение монитора с рабочего устройства, для того чтобы накрыть на него окно (ScreenCaptureForMac)
         GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         graphicsDevice.setFullScreenWindow(this);
+
+        //установка фона для метки
+        label.setBackground(Color.red);
 
         //установка видимости окна
         setVisible(true);
@@ -77,6 +82,7 @@ public class ScreenCaptureForMac extends Window {
                 buttonTriger = true;
                 imagePanel.remove(btnExit);
                 imagePanel.remove(btnSave);
+                imagePanel.remove(label);
 
                 //first_quarter
                 if( currentCursorPositionX < e.getX() && currentCursorPositionY > e.getY() ){
@@ -205,9 +211,6 @@ public class ScreenCaptureForMac extends Window {
                         currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 - 45,
                         80,30);
 
-                //добавление метки с сообщением "нажми для вставки изображения"
-                Label label = new Label("IMAGE IN A BUFFER!");
-                label.setBackground(Color.red);
                 label.setBounds(currentCursorPositionX + (e.getX() - currentCursorPositionX)/2 - 60,
                         currentCursorPositionY + (e.getY() - currentCursorPositionY)/2 + 25,
                         120,30);
